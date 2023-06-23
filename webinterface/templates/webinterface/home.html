@@ -1,0 +1,125 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{% static 'recommendations/main.css' %}">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f8f8f8;
+        }
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            text-align: center;
+        }
+        h1 {
+            font-size: 36px;
+            margin-bottom: 30px;
+            color: #007bff;
+        }
+        p {
+            font-size: 18px;
+            margin-bottom: 20px;
+            color: #555555;
+        }
+        .text-center {
+            text-align: center;
+        }
+        .inputMethod {
+            margin-top: 30px;
+        }
+        h2 {
+            font-size: 24px;
+            margin-bottom: 15px;
+            color: #007bff;
+        }
+        .btn-primary {
+            background-color: #007bff;
+            border-color: #007bff;
+        }
+        .btn-primary:hover {
+            background-color: #0069d9;
+            border-color: #0062cc;
+        }
+        .mt-4 {
+            margin-top: 20px;
+        }
+        .mb-4 {
+            margin-bottom: 20px;
+        }
+        .hidden-recommendation {
+            display: none;
+        }
+        textarea#id_text_input {
+            width: 80%; /* Ändere die Breite auf 80% */
+            height: 30vh; /* Ändere die Höhe auf 30% der Bildschirmhöhe */
+            resize: vertical; /* Erlaube vertikale Größenänderung */
+        }
+    </style>
+    <title>RNA Binding Prediction - Startseite</title>
+</head>
+<body>
+<div class="container">
+    <h1 class="mt-4">RNA Binding Prediction</h1>
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+
+        <div class="inputMethod mt-4">
+            <label for="id_text_input">Enter the query protein sequences in FASTA format:</label>
+            <textarea class="form-control" id="id_text_input" name="text_input" rows="5" placeholder="Enter your text input"></textarea>
+        </div>
+
+        <p class="mt-4">OR upload your input file:</p>
+
+        <div class="inputMethod mt-4">
+            <input type="file" class="form-control-file" id="id_file_input" name="file_input">
+        </div>
+
+        <p class="mt-4">Please choose a species-specific predictor:</p>
+
+        <div class="inputMethod mt-4">
+            <label for="id_species">Species:</label>
+            <select class="form-control" id="id_species" name="species">
+                <option value="species1">Species 1</option>
+                <option value="species2">Species 2</option>
+                <option value="species3">Species 3</option>
+            </select>
+        </div>
+
+        <button type="submit" class="btn btn-primary mt-4" onclick="submitForm(event)">Submit</button>
+    </form>
+</div>
+
+<script>
+    function submitForm(event) {
+        event.preventDefault();
+
+        var textInput = document.querySelector("#id_text_input");
+        var fileInput = document.querySelector("#id_file_input");
+
+        // Hier kannst du den Code einfügen, um die Eingabe zu verarbeiten
+        // Du kannst auf die Werte von textInput, fileInput und species zugreifen
+
+        // Beispiel:
+        console.log("Text Input:", textInput.value);
+        console.log("File Input:", fileInput.files[0]);
+        console.log("Species:", document.querySelector("#id_species").value);
+
+        // Füge hier deinen weiteren Code ein, um die Eingabe zu verarbeiten
+
+        // Anschließend kannst du das Formular absenden
+        document.querySelector("form").submit();
+    }
+</script>
+
+</body>
+</html>
