@@ -81,6 +81,9 @@
     </form>
 </div>
 {% if gene_sequences %}
+    <div class="mt-4">
+        <a href="{% url 'webinterface:download_csv' %}" class="btn btn-primary">Download as CSV</a>
+    </div>
     <div class="table-responsive mt-4">
         <table class="table">
             <thead>
